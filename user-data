@@ -1,0 +1,16 @@
+#cloud-config
+
+growpart:
+  mode: auto
+  devices: ['/']
+
+chpasswd:
+  list: |
+    root:root
+    fedora:password
+  expire: false
+
+ssh_pwauth: True
+disable_root: false
+package_reboot_if_required: true
+package_upgrade: false

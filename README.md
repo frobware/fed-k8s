@@ -1,2 +1,1 @@
-# fed-k8s
-Fedora-based k8s VMs
+# fedk8s-fedk8s-hacks
