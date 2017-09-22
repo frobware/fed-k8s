@@ -1,5 +1,6 @@
 <network>
   <name>fedk8s</name>
+  <domain name='k8s.home' localOnly='yes'/>
   <forward mode='nat'>
     <nat>
       <port start='1024' end='65535'/>

@@ -7,10 +7,22 @@ growpart:
 chpasswd:
   list: |
     root:root
+    ubuntu:password
     fedora:password
   expire: false
 
+packages:
+  - bind-utils
+
 ssh_pwauth: True
 disable_root: false
+
 package_reboot_if_required: true
-package_upgrade: false
+package_upgrade: true
+
+# dnf copr enable -y ariscop/eatmydata
+# https://copr.fedorainfracloud.org/coprs/ariscop/eatmydata/
+
+power_state:
+  mode: reboot
+  condition: True

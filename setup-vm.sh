@@ -6,10 +6,10 @@ for i in "$@"; do
     virsh vol-clone --pool default ${CLOUD_IMG:-Fedora-Cloud-Base-26-1.5.x86_64.raw} ${name}.img
     virsh vol-resize --pool default ${name}.img +10G
     virsh pool-refresh default
-    virt-install -r 1024 \
+    virt-install -r 4096 \
 		 --os-variant=linux \
 		 -n $name \
-		 --vcpus=1 \
+		 --vcpus=2 \
 		 --autostart \
 		 --noautoconsole \
 		 --memballoon virtio \
