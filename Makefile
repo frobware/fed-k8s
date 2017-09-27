@@ -3,7 +3,8 @@
 CONFIG_DRIVES :=				\
 	fedk8s-vm-1-ds.iso			\
 	fedk8s-vm-2-ds.iso			\
-	fedk8s-vm-3-ds.iso
+	fedk8s-vm-3-ds.iso			\
+	fedk8s-vm-4-ds.iso
 
 IMAGE_DIR := /var/lib/libvirt/images
 

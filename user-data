@@ -6,13 +6,11 @@ growpart:
 
 chpasswd:
   list: |
-    root:root
     ubuntu:password
-    fedora:password
   expire: false
 
-packages:
-  - bind-utils
+# packages:
+#   - bind-utils
 
 ssh_pwauth: True
 disable_root: false
@@ -26,3 +24,9 @@ package_upgrade: true
 power_state:
   mode: reboot
   condition: True
+
+apt:
+  - source: deb http://apt.kubernetes.io/ kubernetes-xenial main
+
+runcmd:
+  - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
