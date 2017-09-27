@@ -1,10 +1,14 @@
 .PHONY: all
 
+ifndef PREFIX
+$(error PREFIX is not set)
+endif
+
 CONFIG_DRIVES :=				\
-	fedk8s-vm-1-ds.iso			\
-	fedk8s-vm-2-ds.iso			\
-	fedk8s-vm-3-ds.iso			\
-	fedk8s-vm-4-ds.iso
+	$(PREFIX)-vm-1-ds.iso			\
+	$(PREFIX)-vm-2-ds.iso			\
+	$(PREFIX)-vm-3-ds.iso			\
+	$(PREFIX)-vm-4-ds.iso
 
 IMAGE_DIR := /var/lib/libvirt/images
 
@@ -25,9 +29,9 @@ clean:
 	$(RM) $(CONFIG_DRIVES)
 
 redo-net: remove-net
-	virsh net-define fedk8s.xml
-	virsh net-start fedk8s
+	virsh net-define $(PREFIX).xml
+	virsh net-start $(PREFIX)
 
 remove-net:
-	-virsh net-undefine fedk8s
-	-virsh net-destroy fedk8s
+	-virsh net-undefine $(PREFIX)
+	-virsh net-destroy $(PREFIX)

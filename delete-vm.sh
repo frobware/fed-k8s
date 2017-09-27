@@ -2,7 +2,7 @@
 
 for i in "$@"; do
     virsh pool-refresh default
-    name=fedk8s-vm-${i}
+    name=${PREFIX?:oops}-vm-${i}
     virsh destroy $name || true
     virsh undefine $name || true
     virsh pool-refresh default

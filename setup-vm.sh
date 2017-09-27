@@ -1,7 +1,7 @@
 #!/bin/bash
 
 for i in "$@"; do
-    name=fedk8s-vm-${i}
+    name=${PREFIX:?oops}-vm-${i}
     virsh pool-refresh default
     virsh vol-clone --pool default ${CLOUD_IMG:-xenial-server-cloudimg-amd64-disk1.img} ${name}.img
     virsh vol-resize --pool default ${name}.img +10G
@@ -16,6 +16,6 @@ for i in "$@"; do
 		 --boot hd \
 		 --disk vol=default/${name}.img,format=qcow2,bus=virtio,cache=writeback,size=${DISK_SIZE:-10} \
 		 --disk vol=default/${name}-ds.iso,bus=virtio \
-		 --network network=fedk8s,model=virtio \
+		 --network network=${PREFIX},model=virtio \
 
 done
