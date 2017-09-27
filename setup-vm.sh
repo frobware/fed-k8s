@@ -16,6 +16,6 @@ for i in "$@"; do
 		 --boot hd \
 		 --disk vol=default/${name}.img,format=qcow2,bus=virtio,cache=writeback,size=${DISK_SIZE:-10} \
 		 --disk vol=default/${name}-ds.iso,bus=virtio \
-		 --network network=${PREFIX},model=virtio \
+		 --network network=${NETWORK:?nonet},model=virtio \
 
 done
