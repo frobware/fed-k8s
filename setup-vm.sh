@@ -8,7 +8,7 @@ for i in "$@"; do
     virsh vol-clone --pool default ${CLOUD_IMG:-CentOS-7-x86_64-GenericCloud.qcow2} ${name}.img
     virsh vol-resize --pool default ${name}.img +50G
     virsh pool-refresh default
-    virt-install -r 4096 \
+    virt-install -r 8192 \
 		 --os-variant=linux \
 		 -n $name \
 		 --vcpus=2 \
