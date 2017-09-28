@@ -20,8 +20,8 @@ packages:
 ssh_pwauth: True
 disable_root: false
 
-package_reboot_if_required: true
-package_upgrade: true
+package_reboot_if_required: false
+package_upgrade: false
 
 # dnf copr enable -y ariscop/eatmydata
 # https://copr.fedorainfracloud.org/coprs/ariscop/eatmydata/
