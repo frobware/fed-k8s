@@ -4,7 +4,7 @@ for i in "$@"; do
     name=${PREFIX:?oops}-vm-${i}
     virsh pool-refresh default
     virsh vol-clone --pool default ${CLOUD_IMG:-xenial-server-cloudimg-amd64-disk1.img} ${name}.img
-    virsh vol-resize --pool default ${name}.img +10G
+    virsh vol-resize --pool default ${name}.img +20G
     virsh pool-refresh default
     virt-install -r 4096 \
 		 --os-variant=linux \
