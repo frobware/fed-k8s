@@ -13,6 +13,9 @@ chpasswd:
 
 # packages:
 #   - bind-utils
+packages:
+  - openssh-server
+  - NetworkManager
 
 ssh_pwauth: True
 disable_root: false
