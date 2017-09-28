@@ -1,6 +1,6 @@
-instance-id: IID-UUID
-hostname: HOSTNAME
-local-hostname: HOSTNAME
-fqdn: HOSTNAME
-manage_etc_hosts: true
-preserve_hostname: true
+instance-id: @@IID-UUID@@
+hostname: @@HOSTNAME@@.@@DOMAINNAME@@
+host: @@HOSTNAME@@
+local-hostname: @@HOSTNAME@@
+fqdn: @@HOSTNAME@@.@@DOMAINNAME@@
+manage_etc_hosts: localhost

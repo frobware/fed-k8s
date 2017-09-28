@@ -4,6 +4,10 @@ ifndef PREFIX
 $(error PREFIX is not set)
 endif
 
+ifndef DOMAINNAME
+DOMAINNAME = k8s.home
+endif
+
 CONFIG_DRIVES :=				\
 	$(PREFIX)-vm-1-ds.iso			\
 	$(PREFIX)-vm-2-ds.iso			\
@@ -18,7 +22,7 @@ config: $(CONFIG_DRIVES)
 
 %.iso: user-data meta-data create-config-drive Makefile
 	@echo generating $@
-	@./create-config-drive -h $(patsubst %-ds.iso,%,$@) -k ~/.ssh/id_rsa.pub -u user-data $@
+	@./create-config-drive -h $(patsubst %-ds.iso,%,$@) --domainname $(DOMAINNAME) -k ~/.ssh/id_rsa.pub -u user-data $@
 
 install: $(patsubst %,$(IMAGE_DIR)/%,$(CONFIG_DRIVES))
 

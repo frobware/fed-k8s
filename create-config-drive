@@ -6,12 +6,12 @@
 # -u/--user-data option).
 
 usage () {
-	echo "usage: ${0##*/}: [--ssh-key <pubkey>] [--user-data <file>] [--hostname <hostname>] <imagename>"
+	echo "usage: ${0##*/}: [--ssh-key <pubkey>] [--user-data <file>] [--hostname <hostname>] [--domainname <domainname> ] <imagename>"
 }
 
 ARGS=$(getopt \
-	-o k:u:h: \
-	--long help,hostname:,ssh-key:,user-data: -n ${0##*/} \
+	-o k:u:h:d: \
+	--long help,hostname:,domainname:,ssh-key:,user-data: -n ${0##*/} \
 	-- "$@")
 
 if [ $? -ne 0 ]; then
@@ -37,6 +37,10 @@ while :; do
 			;;
 		-h|--hostname)
 			hostname="$2"
+			shift 2
+			;;
+		-d|--domainname)
+			domainname="$2"
 			shift 2
 			;;
 		--)	shift
@@ -80,7 +84,7 @@ else
 	touch $config_dir/user-data
 fi
 
-sed -e "s/HOSTNAME/$hostname/g" -e "s/IID-UUID/iid-${uuid}/g" meta-data > $config_dir/meta-data
+sed -e "s/@@HOSTNAME@@.@@DOMAINNAME@@/@@HOSTNAME@@.$domainname/" -e "s/@@HOSTNAME@@/$hostname/g" -e "s/@@IID-UUID@@/iid-${uuid}/g" meta-data > $config_dir/meta-data
 
 if [ "$ssh_key_data" ]; then
 	cat >> $config_dir/meta-data <<-EOF
@@ -89,6 +93,8 @@ if [ "$ssh_key_data" ]; then
 	    $ssh_key_data
 	EOF
 fi
+
+cat $config_dir/meta-data
 
 echo "generating configuration image at $config_image"
 if ! mkisofs -o "$config_image" -V cidata -r -J --quiet $config_dir; then
