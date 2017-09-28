@@ -5,6 +5,8 @@ for i in "$@"; do
     virsh pool-refresh default
     virsh vol-clone --pool default ${CLOUD_IMG:-xenial-server-cloudimg-amd64-disk1.img} ${name}.img
     virsh vol-resize --pool default ${name}.img +20G
+    virsh vol-clone --pool default ${CLOUD_IMG:-CentOS-7-x86_64-GenericCloud.qcow2} ${name}.img
+    virsh vol-resize --pool default ${name}.img +50G
     virsh pool-refresh default
     virt-install -r 4096 \
 		 --os-variant=linux \
