@@ -16,6 +16,8 @@ chpasswd:
 packages:
   - openssh-server
   - NetworkManager
+  - httpd-tools
+  - java-1.8.0-openjdk-headless
 
 ssh_pwauth: True
 disable_root: false
