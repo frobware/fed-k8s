@@ -9,4 +9,5 @@ If these happen to work for *you* OOTB I would be surprised.
 
 ```
 echo "INSECURE_REGISTRY='--insecure-registry 172.30.0.0/16'" | sudo tee -a /etc/sysconfig/docker
+sudo groupadd docker && sudo gpasswd -a ${USER} docker && sudo systemctl restart docker
 ```
