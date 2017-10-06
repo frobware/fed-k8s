@@ -8,5 +8,5 @@ If these happen to work for *you* OOTB I would be surprised.
 # Docker
 
 ```
-echo "INSECURE_REGISTRY='--insecure-registry 172.30.0.0/16' | sudo tee -a /etc/syconfig/docker
+echo "INSECURE_REGISTRY='--insecure-registry 172.30.0.0/16'" | sudo tee -a /etc/sysconfig/docker
 ```
