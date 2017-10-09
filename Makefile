@@ -29,6 +29,8 @@ install: $(patsubst %,$(IMAGE_DIR)/%,$(CONFIG_DRIVES))
 $(IMAGE_DIR)/%.iso: %.iso
 	sudo cp $< $@
 
+Makefile: setup-vm.sh delete-vm.sh
+
 clean:
 	$(RM) $(CONFIG_DRIVES)
 

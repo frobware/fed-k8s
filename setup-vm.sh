@@ -3,7 +3,7 @@
 for i in "$@"; do
     name=${PREFIX:?oops}-vm-${i}
     virsh pool-refresh default
-    virsh vol-clone --pool default ${CLOUD_IMG:-CentOS-7-x86_64-GenericCloud.qcow2} ${name}.img
+    virsh vol-clone --pool default ${CLOUD_IMG:-Fedora-Cloud-Base-26-1.5.x86_64.qcow2} ${name}.img
     virsh vol-resize --pool default ${name}.img +50G
     virsh pool-refresh default
     virt-install -r 4096 \

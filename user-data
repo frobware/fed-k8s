@@ -6,18 +6,12 @@ growpart:
 
 chpasswd:
   list: |
-    root:root
-    ubuntu:password
     fedora:password
   expire: false
 
 # packages:
-#   - bind-utils
-packages:
-  - openssh-server
-  - NetworkManager
-  - httpd-tools
-  - java-1.8.0-openjdk-headless
+#   - nfs-utils
+#   - autofs
 
 ssh_pwauth: True
 disable_root: false
@@ -25,9 +19,12 @@ disable_root: false
 package_reboot_if_required: false
 package_upgrade: false
 
-# dnf copr enable -y ariscop/eatmydata
-# https://copr.fedorainfracloud.org/coprs/ariscop/eatmydata/
-
 power_state:
   mode: reboot
   condition: True
+
+#PATH=/data/src/github.com/openshift/origin/_output/local/bin/linux/amd64:$PATH
+#export PATH
+#type -p direnv &>/dev/null && eval "$(direnv hook bash)"
+#type -p oc &>/dev/null && source <(oc completion bash)
+#type -p kubectl &>/dev/null && source <(kubectl completion bash)
