@@ -9,9 +9,8 @@ chpasswd:
     fedora:password
   expire: false
 
-# packages:
-#   - nfs-utils
-#   - autofs
+packages:
+  - NetworkManager
 
 ssh_pwauth: True
 disable_root: false
