@@ -2,7 +2,7 @@
 
 # A lot of this is to enable cluster-loader.py
 
-sudo dnf install -y			\
+sudo ${DNF:-dnf} install -y			\
     openssh-server				\
     NetworkManager				\
     httpd-tools					\

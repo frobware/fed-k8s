@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo dnf install -y				\
+sudo ${DNF:-dnf} install -y				\
     direnv					\
     git						\
     bash-completion				\

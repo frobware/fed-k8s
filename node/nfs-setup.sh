@@ -8,7 +8,7 @@ cat <<EOF | sudo tee -a /etc/auto.master
 /data /etc/auto.data
 EOF
 
-sudo dnf install -y nfs-utils autofs
+sudo ${DNF:-dnf} install -y nfs-utils autofs
 
 sudo systemctl enable autofs
 sudo systemctl restart autofs
