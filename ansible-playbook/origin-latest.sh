@@ -9,7 +9,7 @@ echo ""
 BASEDIR=$(mktemp -d)
 pushd $BASEDIR &>/dev/null
 REPOURL=$(curl -s https://storage.googleapis.com/origin-ci-test/branch-logs/origin/master/builds/.latest)/artifacts/rpms
-echo "openshift_additional_repos=[{'id': 'origin-devel', 'name': 'OpenShift Origin Development', 'baseurl': '$REPOURL', 'enabled': 1, 'gpgcheck': 0}]"
+echo "openshift_additional_repos=[{'id': 'origin-devel', 'name': 'origin-devel', 'baseurl': '$REPOURL', 'enabled': 1, 'gpgcheck': 0}]"
 PRIMARY=$(curl -s $REPOURL/repodata/repomd.xml | grep -o repodata.*primary.xml | cut -f2 -d'/')
 wget -q $REPOURL/repodata/$PRIMARY.gz
 gzip -d $PRIMARY.gz
