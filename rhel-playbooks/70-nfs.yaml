@@ -1,0 +1,14 @@
+---
+- hosts: all
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Install NFS packages
+    yum:
+      name: autofs, nfs-utils
+      state: present
+  - name: Enable autofs
+    systemd: name=autofs enabled=yes
+  - name: Restart autofs
+    command: systemctl restart autofs

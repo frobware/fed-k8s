@@ -1,0 +1,17 @@
+---
+- hosts: all
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Install Docker
+    yum:
+      name: docker-1.12.6
+  - name: Add INSECURE Registry
+    lineinfile:
+      dest: /etc/sysconfig/docker
+      line: 'INSECURE_REGISTRY="--insecure-registry 172.30.0.0/16"'
+  - name: Enable Docker
+    systemd: name=docker enabled=yes
+  - name: Restart docker
+    command: systemctl restart docker 

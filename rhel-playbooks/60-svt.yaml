@@ -1,0 +1,25 @@
+---
+- hosts: all
+  remote_user: cloud-user
+  tasks:
+  - name: Clone OpenShift Scalability repo
+    git:
+      repo: https://github.com/openshift/svt.git
+      dest: svt
+      update: no
+  - name: Clone JBOSS Application templates
+    git:
+      repo: https://github.com/jboss-openshift/application-templates
+      dest: application-templates
+      update: no
+  - name: Install Python modules to facilitate Scalability testing
+    yum:
+      name: python-pip, python-boto, python-yaml, python-rbd, python-flask
+      state: present
+      enablerepo: epel
+  - name: Install python-boto3
+    pip:
+      name: boto3
+      
+      
+

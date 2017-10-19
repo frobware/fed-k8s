@@ -1,0 +1,10 @@
+---
+- hosts: all
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Install base packages
+    yum:
+      name: wget, git, net-tools, bind-utils, iptables-services, bridge-utils, bash-completion, kexec-tools, sos, psacct
+      state: present

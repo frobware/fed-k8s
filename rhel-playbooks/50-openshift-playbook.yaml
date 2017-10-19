@@ -1,0 +1,8 @@
+---
+- hosts: all
+  remote_user: cloud-user
+  tasks:
+  - name: Clone openshift-ansible repo
+    git:
+      repo: https://github.com/openshift/openshift-ansible
+      dest: openshift-ansible

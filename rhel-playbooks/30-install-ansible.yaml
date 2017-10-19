@@ -1,0 +1,15 @@
+---
+- hosts: all
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Install EPEL RPM
+    command: yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  - name: Disable the EPEL REPO
+    command: sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
+  - name: Install Ansible
+    yum:
+      name: ansible, pyOpenSSL
+      enablerepo: epel
+      state: latest
