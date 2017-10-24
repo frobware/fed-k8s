@@ -1,2 +1,3 @@
 /*.iso
 rhel-playbooks/*.retry
+fedora-playbooks/*.retry
