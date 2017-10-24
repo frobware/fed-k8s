@@ -1,0 +1,6 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: upgrade all packages
+      dnf: name=* state=latest

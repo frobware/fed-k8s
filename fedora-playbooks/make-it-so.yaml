@@ -1,0 +1,14 @@
+---
+- import_playbook: ansible-support.yaml
+
+- import_playbook: prerequisites.yaml
+
+- import_playbook: docker.yaml
+
+- import_playbook: docker-group.yaml
+
+- import_playbook: nfs.yaml
+
+- import_playbook: origin-scripts.yaml
+
+- import_playbook: update-packages.yaml

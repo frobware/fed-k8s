@@ -1,0 +1,30 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: Install NFS packages
+    dnf:
+      name: autofs, nfs-utils
+      state: present
+  - name: Create /etc/auto.data
+    copy:
+      content: |
+        src -rw,soft,intr spicy.home:/home/aim/go-projects/origin/src
+      dest: /etc/auto.data
+      force: yes
+      group: root
+      owner: root
+      mode: 0644
+  - name: Add to /etc/auto.master
+    copy:
+      content: |
+        /data /etc/auto.data
+      dest: /etc/auto.master
+      force: yes
+      group: root
+      owner: root
+      mode: 0644
+  - name: Enable autofs
+    systemd: name=autofs daemon_reload=true enabled=yes
+  - name: Restart autofs
+    command: systemctl restart autofs

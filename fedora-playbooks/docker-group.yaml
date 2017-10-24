@@ -1,0 +1,6 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Docker shenanigans
+      shell: groupadd docker && gpasswd -a fedora docker && systemctl restart docker
