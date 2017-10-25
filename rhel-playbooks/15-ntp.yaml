@@ -1,8 +1,16 @@
 ---
 - hosts: all
-  remote_user: cloud-user
   become: yes
   become_method: sudo
   tasks:
-    - name: set timezone
-      shell: timedatectl set-timezone Europe/London
+    - name: Set Timezone
+      shell: timedatectl set-timezone Etc/UTC
+    - name: Install NTP
+      yum:
+        name: ntp
+        state: present
+    - name: Make sure NTP is started up
+      service: name=ntpd state=started enabled=yes
+  handlers:
+    - name: restart ntpd
+      service: name=ntpd state=restarted

@@ -1,20 +1,16 @@
----
 - hosts: all
-  remote_user: cloud-user
-  become: yes
-  become_method: sudo
-  gather_facts: no
   tasks:
-  - name: Reboot server
-    command: shutdown -r now "Reboot triggered by Ansible"
-    async: 0
+  - name: restart server
+    shell: sleep 2 && shutdown -r now "Ansible updates triggered"
+    async: 1
     poll: 0
+    become: true
+    become_method: sudo
     ignore_errors: true
-  - name: Wait for server to restart
+  - name: 'waiting for {{ inventory_hostname }} to come back'
     local_action:
       module: wait_for
       host: '{{ inventory_hostname }}'
       port: 22
       delay: 1
       timeout: 300
-      sudo: false
