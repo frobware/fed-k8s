@@ -35,9 +35,9 @@ clean:
 	$(RM) $(CONFIG_DRIVES)
 
 redo-net: remove-net
-	virsh net-define $(PREFIX).xml
-	virsh net-start $(PREFIX)
+	virsh net-define $(NETWORK).xml
+	virsh net-start $(NETWORK)
 
 remove-net:
-	-virsh net-undefine $(PREFIX)
-	-virsh net-destroy $(PREFIX)
+	-virsh net-undefine $(NETWORK)
+	-virsh net-destroy $(NETWORK)
