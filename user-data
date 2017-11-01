@@ -6,7 +6,7 @@ growpart:
 
 chpasswd:
   list: |
-    fedora:password
+    cloud-user:password
   expire: false
 
 packages:
