@@ -10,7 +10,6 @@ for i in "$@"; do
 		 --os-variant=linux \
 		 -n $name \
 		 --vcpus=2 \
-		 --autostart \
 		 --noautoconsole \
 		 --memballoon virtio \
 		 --boot hd \
