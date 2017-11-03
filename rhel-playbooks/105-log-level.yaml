@@ -1,0 +1,15 @@
+---
+- hosts: all
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Set logging
+    replace:
+      path: /etc/sysconfig/atomic-openshift-node
+      regexp: 'OPTIONS=--loglevel=\d+'
+      replace: 'OPTIONS=--loglevel=4'
+  - name: Enable atomic-openshift-node
+    systemd: name=atomic-openshift-node enabled=yes
+  - name: Restart atomic-openshift-node
+    command: systemctl restart atomic-openshift-node

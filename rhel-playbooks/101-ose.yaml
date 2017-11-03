@@ -1,0 +1,33 @@
+---
+- hosts: all
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Copy Certificates from localhost to remote
+    copy:
+      src: client-cert.pem
+      dest: /var/lib/yum
+      owner: root
+      group: root
+      mode: u+rw,g-wx,o-rwx
+  - name: Copy Key
+    copy:
+      src: client-key.pem
+      dest: /var/lib/yum
+      owner: root
+      group: root
+      mode: u+rw,g-wx,o-rwx
+  - name: Copy aos.repo
+    copy:
+      src: aos.repo
+      dest: /etc/yum.repos.d/ose37-devel.repo
+      owner: root
+      group: root
+      mode: u+rw,g-wx,o-rwx
+  - name: flush cache
+    command: yum clean all
+  - name: make cache
+    command: yum makecache fast
+  - name: upgrade all packages
+    yum: name=* state=latest

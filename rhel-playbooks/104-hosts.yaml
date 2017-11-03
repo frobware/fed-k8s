@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: Add spicy to /etc/hosts
+    lineinfile:
+      dest: /etc/hosts
+      line: '192.168.121.1 spicy spicy.home'

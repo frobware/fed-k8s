@@ -1,0 +1,20 @@
+---
+- import_playbook: 00-rhel-subscribe.yaml
+
+- import_playbook: 10-network-manager.yaml
+
+- import_playbook: 10-rhel-base-packages.yaml
+
+- import_playbook: 25-yum-update.yaml
+
+- import_playbook: 30-install-ansible.yaml
+
+- import_playbook: 40-docker.yaml
+
+- import_playbook: 50-openshift-playbook.yaml
+
+- import_playbook: 60-svt.yaml
+
+- import_playbook: 70-nfs.yaml
+
+- import_playbook: 20-reboot.yaml

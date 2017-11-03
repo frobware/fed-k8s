@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Add debug option to Docker daemon
+    replace:
+      path: /etc/sysconfig/docker
+      regexp: OPTIONS='(.*)'
+      replace: OPTIONS='\1 -D'
+    

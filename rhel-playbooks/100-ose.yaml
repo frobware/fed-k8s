@@ -1,0 +1,35 @@
+---
+- hosts: all
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Add Certificates and Keys and base URL
+    lineinfile:
+      dest: /etc/yum.repos.d/ose37-devel.repo
+      regexp: "^{{ item.property }}="
+      line: "{{ item.property }}={{ item.value }}"
+    with_items:
+      - { property: 'sslclientcert', value: '/var/lib/yum/client-cert.pem' }
+      - { property: 'sslclientkey',  value: '/var/lib/yum/client-key.pem' }
+      - { property: 'baseurl',  value: 'https://mirror.openshift.com/enterprise/online-int/latest/RH7-RHAOS-3.7/x86_64/os' }
+  - name: Copy Certificates from localhost to remote
+    copy:
+      src: client-cert.pem
+      dest: /var/lib/yum
+      owner: root
+      group: root
+      mode: u+rw,g-wx,o-rwx
+  - name: Copy Key
+    copy:
+      src: client-key.pem
+      dest: /var/lib/yum
+      owner: root
+      group: root
+      mode: u+rw,g-wx,o-rwx
+  - name: flush cache
+    command: yum clean all
+  - name: make cache
+    command: yum makecache fast
+  - name: upgrade all packages
+    yum: name=* state=latest

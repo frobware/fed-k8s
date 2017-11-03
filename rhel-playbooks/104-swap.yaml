@@ -1,0 +1,19 @@
+---
+- hosts: all
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Create swap file
+    shell: dd if=/dev/zero of=/swapfile count=$((10 * 1024 * 1024)) bs=1024
+  - name: Make swapfile
+    command: mkswap /swapfile
+  - name: chmod swapfile
+    command: chmod 0600 /swapfile
+  - name: swapon
+    command: swapon /swapfile
+  - name: Persist swapfile in /etc/fstab
+    lineinfile:
+      dest: /etc/fstab
+      line: '/swapfile swap swap defaults 0 0'
+    
