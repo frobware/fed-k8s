@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: Install python-sebindings
+    yum:
+      name: libselinux-python
+  - name: Install Docker
+    yum:
+      name: docker-1.12.6
+  - name: Add INSECURE_REGISTRY setting
+    lineinfile:
+      dest: /etc/sysconfig/docker
+      line: 'INSECURE_REGISTRY="--insecure-registry 172.30.0.0/16"'
+  - name: Enable Docker
+    systemd: name=docker daemon_reload=true enabled=yes
+  - name: Restart docker
+    command: systemctl restart docker

@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Docker group
+      shell: groupadd docker
+      ignore_errors: true
+    - name: Docker shit
+      shell: gpasswd -a centos docker && systemctl restart docker

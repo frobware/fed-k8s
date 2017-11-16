@@ -1,0 +1,15 @@
+- hosts: all
+  tasks:
+  - name: restart server
+    shell: sleep 2 && shutdown -r now "Ansible updates triggered"
+    async: 1
+    poll: 0
+    become: true
+    ignore_errors: true
+  - name: waiting for {{ inventory_hostname }} to come back
+    local_action:
+      module: wait_for
+      host: '{{ inventory_hostname }}'
+      port: 22
+      delay: 1
+      timeout: 300
