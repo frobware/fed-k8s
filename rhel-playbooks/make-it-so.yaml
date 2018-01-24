@@ -1,4 +1,6 @@
 ---
+- import_playbook: 00-rhel-subscribe.yaml
+
 - import_playbook: 10-network-manager.yaml
 
 - import_playbook: 10-rhel-base-packages.yaml

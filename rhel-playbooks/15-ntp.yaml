@@ -9,7 +9,7 @@
       yum:
         name: ntp
         state: present
-    - name: Make sure NTPd is started up
+    - name: Make sure NTP is started up
       service: name=ntpd state=started enabled=yes
   handlers:
     - name: restart ntpd

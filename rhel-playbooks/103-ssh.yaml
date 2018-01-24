@@ -5,7 +5,7 @@
   - name: Copy .ssh
     copy:
       content: |
-        Host rhel-74-vm-1.k8s.frobware.com rhel-74-vm-2.k8s.frobware.com rhel-74-vm-3.k8s.frobware.com rhel-74-vm-4.k8s.frobware.com rhel-74-vm-5.k8s.frobware.com rhel-74-vm-6.k8s.frobware.com rhel-74-vm-7.k8s.frobware.com
+        Host rhel-74-vm-1.k8s.home rhel-74-vm-2.k8s.home rhel-74-vm-3.k8s.home rhel-74-vm-4.k8s.home rhel-74-vm-5.k8s.home rhel-74-vm-6.k8s.home rhel-74-vm-7.k8s.home
           User cloud-user
           StrictHostKeyChecking no
           UserKnownHostsFile /dev/null

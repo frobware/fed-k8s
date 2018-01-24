@@ -1,4 +1,4 @@
 export PREFIX=rhel-74
 export NETWORK=fedk8s
-export DOMAINNAME=k8s.frobware.com
+export DOMAINNAME=k8s.home
 export CLOUD_IMG=rhel-server-7.4-x86_64-kvm.qcow2
