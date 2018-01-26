@@ -2,7 +2,7 @@
 - hosts: all
   tasks:
   - name: 
-    command: "subscription-manager register --username {{ username }} --password {{ password }}"
+    command: "subscription-manager register --username {{ username }} --password {{ password }} --force"
     retries: 3
   - name: Attach to Employee SKU Virtual Pool
     command: "subscription-manager subscribe --pool {{ pool }}"
