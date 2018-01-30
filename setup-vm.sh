@@ -7,7 +7,7 @@ for i in "$@"; do
     virsh vol-resize --pool default ${name}.img +50G
     virsh pool-refresh default
     virt-install -r 4096 \
-		 --os-variant=linux \
+		 --os-variant=${OS_VARIANT:-rhel7.4} \
 		 -n $name \
 		 --vcpus=2 \
 		 --noautoconsole \
