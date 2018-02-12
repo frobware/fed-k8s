@@ -5,8 +5,11 @@
   - name: Copy .ssh
     copy:
       content: |
-        Host rhel-74-vm-1.k8s.home rhel-74-vm-2.k8s.home rhel-74-vm-3.k8s.home rhel-74-vm-4.k8s.home rhel-74-vm-5.k8s.home rhel-74-vm-6.k8s.home rhel-74-vm-7.k8s.home
+        Host rhel-74-vm-1 rhel-74-vm-2 rhel-74-vm-3 rhel-74-vm-4 rhel-74-vm-5 rhel-74-vm-6 rhel-74-vm-7
+          HostName %h.k8s.home
+          CanonicalizeHostname yes
           User cloud-user
+        Host *.k8s.home
           StrictHostKeyChecking no
           UserKnownHostsFile /dev/null
           HashKnownHosts no
