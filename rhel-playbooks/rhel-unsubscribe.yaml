@@ -1,0 +1,6 @@
+---
+- hosts: all
+  tasks:
+  - name: 
+    command: "subscription-manager unregister"
+    retries: 3
