@@ -1,0 +1,37 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Stop Docker stable
+    command: systemctl stop docker
+    ignore_errors: true
+  - name: Disable Docker stable
+    command: systemctl disable docker
+    ignore_errors: true
+  - name: Install docker-latest
+    yum:
+      name: docker-latest
+  - name: Add INSECURE Registry
+    lineinfile:
+      dest: /etc/sysconfig/docker-latest
+      line: 'INSECURE_REGISTRY="--insecure-registry 172.30.0.0/16"'
+  - name: Add overlay2
+    lineinfile:
+      dest: /etc/sysconfig/docker-latest-storage-setup
+      line: 'STORAGE_DRIVER=overlay2'
+  - name: docker-latest switcheroo
+    lineinfile: 
+      dest=/etc/sysconfig/docker
+      regexp="{{ item.regexp }}" 
+      line="{{ item.line }}" 
+      state=present
+    with_items:
+      - { regexp: '^#DOCKERBINARY=/usr/bin/docker-latest', line: 'DOCKERBINARY=/usr/bin/docker-latest' }
+      - { regexp: '^#DOCKERDBINARY=/usr/bin/dockerd-latest', line: 'DOCKERDBINARY=/usr/bin/dockerd-latest' }
+      - { regexp: '^#DOCKER_CONTAINERD_BINARY=/usr/bin/docker-containerd-latest', line: 'DOCKER_CONTAINERD_BINARY=/usr/bin/docker-containerd-latest' }
+      - { regexp: '^#DOCKER_CONTAINERD_SHIM_BINARY=/usr/bin/docker-containerd-shim-latest', line: 'DOCKER_CONTAINERD_SHIM_BINARY=/usr/bin/docker-containerd-shim-latest' }
+  - name: Enable Docker latest
+    systemd: name=docker-latest enabled=yes
+  - name: Restart docker latest
+    command: systemctl restart docker-latest 
