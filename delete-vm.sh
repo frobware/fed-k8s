@@ -6,5 +6,5 @@ for i in "$@"; do
     virsh destroy $name || true
     virsh undefine $name || true
     virsh pool-refresh default
-    virsh vol-delete --pool default ${name}.img
+    virsh vol-delete --pool default ${name}.qcow2
 done
