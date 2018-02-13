@@ -17,4 +17,6 @@
 
 - import_playbook: 70-nfs.yaml
 
+- import_playbook: 99-disable-cloud-init.yaml
+
 - import_playbook: 20-reboot.yaml
