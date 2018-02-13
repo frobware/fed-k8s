@@ -3,6 +3,8 @@
 
 - import_playbook: 10-network-manager.yaml
 
+- import_playbook: 15-ntp.yaml
+
 - import_playbook: 10-rhel-base-packages.yaml
 
 - import_playbook: 25-yum-update.yaml
