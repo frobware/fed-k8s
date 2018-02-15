@@ -1,0 +1,10 @@
+---
+- hosts: masters
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Change master log level
+    lineinfile:
+      dest: /etc/origin/master/master-config.yaml
+      regexp: '^OPTIONS=--loglevel='
+      line: 'OPTIONS=--loglevel={{loglevel}}'
