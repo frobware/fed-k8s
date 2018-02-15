@@ -3,8 +3,21 @@
   become: yes
   become_method: sudo
   tasks:
-  - name: Change master log level
+  - name: Change /etc/sysconfig/origin-master loglevel
     lineinfile:
-      dest: /etc/origin/master/master-config.yaml
-      regexp: '^OPTIONS=--loglevel='
-      line: 'OPTIONS=--loglevel={{loglevel}}'
+      dest: /etc/sysconfig/origin-master
+      regexp: '^(.*)--loglevel=\d+(.*)'
+      line: '\1--loglevel={{loglevel}}\2'
+      backrefs: yes
+  - name: Change /etc/sysconfig/origin-master-api loglevel
+    lineinfile:
+      dest: /etc/sysconfig/origin-master-api
+      regexp: '^(.*)--loglevel=\d+(.*)'
+      line: '\1--loglevel={{loglevel}}\2'
+      backrefs: yes
+  - name: Change /etc/sysconfig/origin-master-controllers loglevel
+    lineinfile:
+      dest: /etc/sysconfig/origin-master-controllers
+      regexp: '^(.*)--loglevel=\d+(.*)'
+      line: '\1--loglevel={{loglevel}}\2'
+      backrefs: yes
