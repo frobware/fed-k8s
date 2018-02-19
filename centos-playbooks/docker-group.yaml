@@ -5,5 +5,5 @@
     - name: Docker group
       shell: groupadd docker
       ignore_errors: true
-    - name: Docker shit
+    - name: Add centos to docker group
       shell: gpasswd -a centos docker && systemctl restart docker

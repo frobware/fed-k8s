@@ -1,5 +1,5 @@
 export PREFIX=fedora-dev
 export NETWORK=fedk8s
-export DOMAINNAME=k8s.home
+export DOMAINNAME=k8s.frobware.com
 export CLOUD_IMG=Fedora-Cloud-Base-26-1.5.x86_64.qcow2
 export OS_VARIANT=fedora26

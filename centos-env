@@ -1,5 +1,6 @@
 export PREFIX=centos7
-export NETWORK=fedk8s
-export DOMAINNAME=k8s.home
+export NETWORK=br-enp5s0.30
+export DOMAINNAME=k8s.frobware.com
 export CLOUD_IMG=CentOS-7-x86_64-GenericCloud.qcow2
 export OS_VARIANT=rhel7.4
+export USER_DATA=${PREFIX}-user-data

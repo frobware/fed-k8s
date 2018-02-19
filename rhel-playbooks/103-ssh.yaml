@@ -6,10 +6,10 @@
     copy:
       content: |
         Host rhel-74-vm-1 rhel-74-vm-2 rhel-74-vm-3 rhel-74-vm-4 rhel-74-vm-5 rhel-74-vm-6 rhel-74-vm-7
-          HostName %h.k8s.home
+          HostName %h.k8s.frobware.com
           CanonicalizeHostname yes
           User cloud-user
-        Host *.k8s.home
+        Host *.k8s.frobware.com
           StrictHostKeyChecking no
           UserKnownHostsFile /dev/null
           HashKnownHosts no
