@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for i in "$@"; do
+    name=${PREFIX:?oops}-vm-${i}
+    virsh detach-disk --persistent ${name} vdb
+done
