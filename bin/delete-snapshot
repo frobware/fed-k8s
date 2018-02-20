@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -eu
+
+: ${SNAPSHOT:?"you-did-not-set-SNAPSHOT"}
+
+for i in "$@"; do
+    name=${PREFIX:?oops}-vm-${i}
+    virsh snapshot-delete $name --snapshotname ${SNAPSHOT}
+done
