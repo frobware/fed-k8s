@@ -1,6 +1,6 @@
 #!/bin/bash
 
-: ${SNAPSHOT:="base"}
+: ${SNAPSHOT:?"you-did-not-set-SNAPSHOT"}
 
 for i in "$@"; do
     name=${PREFIX:?oops}-vm-${i}
