@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cat <<EOF | sudo tee -a /etc/auto.data
-src -rw,soft,intr 192.168.1.64:/home/aim/go-projects/origin/src
+src -rw,soft,intr 192.168.30.64:/home/aim/go-projects/origin/src
 EOF
 
 cat <<EOF | sudo tee -a /etc/auto.master
