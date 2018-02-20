@@ -12,6 +12,10 @@
     lineinfile:
       dest: /etc/sysconfig/docker
       line: 'INSECURE_REGISTRY="--insecure-registry 172.30.0.0/16"'
+  - name: Add overlay2
+    lineinfile:
+      dest: /etc/sysconfig/docker-storage-setup
+      line: 'STORAGE_DRIVER=overlay2'
   - name: Enable Docker
     systemd: name=docker daemon_reload=true enabled=yes
   - name: Restart docker
