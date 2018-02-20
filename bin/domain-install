@@ -6,15 +6,14 @@ set -eu
 
 for i in "$@"; do
     name=${PREFIX:?oops}-vm-${i}
-    config_drive="/tmp/${name}-ds.iso"
-    $DRYRUN ./create-config-drive \
+    config_drive=$(mktemp -d)/"${name}-ds.iso"
+    ./create-config-drive \
 	--domainname=$DOMAINNAME \
 	--hostname=$name \
 	--ssh-key=$HOME/.ssh/id_rsa.pub	\
 	--user-data=$USER_DATA \
 	$config_drive
     $DRYRUN virsh pool-refresh default
-    $DRYRUN virsh vol-delete --pool default $(basename $config_drive)
     $DRYRUN virsh vol-create-as --pool default $(basename $config_drive) $(stat -Lc%s $config_drive) --format raw
     $DRYRUN virsh vol-upload --pool default $(basename $config_drive) $config_drive
     $DRYRUN virsh vol-clone --pool default ${CLOUD_IMG:-Fedora-Cloud-Base-26-1.5.x86_64.qcow2} ${name}.qcow2
@@ -29,4 +28,5 @@ for i in "$@"; do
 	    --disk vol=default/${name}.qcow2,format=qcow2,bus=virtio,cache=writeback,size=${DISK_SIZE:-50} \
 	    --disk vol=default/$(basename $config_drive),bus=virtio \
 	    --network network=${NETWORK:?nonet},model=virtio
+    $DRYRUN rm -rf $config_drive
 done
