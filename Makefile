@@ -9,7 +9,7 @@ $(error USER_DATA is not set)
 endif
 
 ifndef DOMAINNAME
-DOMAINNAME = k8s.home
+$(error DOMAINNAME is not set)
 endif
 
 CONFIG_DRIVES :=				\
@@ -35,9 +35,9 @@ config: $(CONFIG_DRIVES)
 install: $(patsubst %,$(IMAGE_DIR)/%,$(CONFIG_DRIVES))
 
 $(IMAGE_DIR)/%.iso: %.iso
-	sudo cp $< $@
+	sudo mv $< $@
 
-Makefile: bin/setup-vm bin/delete-vm
+Makefile: bin/start-domain bin/delete-domain
 
 clean:
 	$(RM) $(CONFIG_DRIVES)
