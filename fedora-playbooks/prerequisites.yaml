@@ -5,3 +5,6 @@
   - name: Install python-sebindings
     dnf:
       name: libselinux-python
+  - name: Install python-yaml
+    dnf:
+      name: python-yaml, python3-yaml, python-ipaddress, python-dbus
