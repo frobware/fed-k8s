@@ -9,7 +9,7 @@
   - name: Create /etc/auto.data
     copy:
       content: |
-        src -rw,soft,intr 192.168.1.64:/home/aim/go-projects/origin/src
+        src -rw,soft,intr 192.168.30.64:/home/aim/go-projects/origin/src
       dest: /etc/auto.data
       force: yes
       group: root

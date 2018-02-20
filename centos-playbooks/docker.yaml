@@ -12,7 +12,7 @@
     lineinfile:
       dest: /etc/sysconfig/docker
       line: 'INSECURE_REGISTRY="--insecure-registry 172.30.0.0/16"'
-  - name: Add overlay2
+  - name: Set docker storage to use overlay2
     lineinfile:
       dest: /etc/sysconfig/docker-storage-setup
       line: 'STORAGE_DRIVER=overlay2'
