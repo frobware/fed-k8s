@@ -1,13 +1,4 @@
-# Kubernetes and Origin playground
+# Playbooks for installing OpenShift
 
-Some primitive scripts and notes for standing up VMs for both
-kubernetes and Origin development.
-
-If these happen to work for *you* OOTB I would be surprised.
-
-# Docker
-
-```
-echo "INSECURE_REGISTRY='--insecure-registry 172.30.0.0/16'" | sudo tee -a /etc/sysconfig/docker
-sudo groupadd docker && sudo gpasswd -a ${USER} docker && sudo systemctl restart docker
-```
+A smorgasboard of playbooks primarily to install OpenShift on either
+Centos or RHEL.
