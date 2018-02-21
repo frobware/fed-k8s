@@ -1,4 +1,6 @@
 ---
+- import_playbook: network-manager.yaml
+
 - import_playbook: update-packages.yaml
 
 - import_playbook: prerequisites.yaml
