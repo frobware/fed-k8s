@@ -4,7 +4,7 @@
   tasks:
   - name: Install NetworkManager
     yum: name=NetworkManager state=present
-  - name: Disable network service
-    systemd: name=network enabled=no
-  - name: Enable NetworkManager service
-    systemd: name=NetworkManager enabled=yes
+  - name: Enable NetworkManager
+    systemd: name=NetworkManager daemon_reload=true enabled=yes
+  - name: Restart NetworkManager
+    command: systemctl restart NetworkManager
