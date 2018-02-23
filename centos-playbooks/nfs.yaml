@@ -24,6 +24,24 @@
       group: root
       owner: root
       mode: 0644
+  - name: Create /etc/auto.kube
+    copy:
+      content: |
+        src -rw,soft,intr 192.168.30.64:/home/aim/go-projects/kube/src
+      dest: /etc/auto.kube
+      force: yes
+      group: root
+      owner: root
+      mode: 0644
+  - name: Add to /etc/auto.master
+    copy:
+      content: |
+        /kube /etc/auto.kube
+      dest: /etc/auto.master
+      force: yes
+      group: root
+      owner: root
+      mode: 0644
   - name: Enable autofs
     systemd: name=autofs daemon_reload=true enabled=yes
   - name: Restart autofs
