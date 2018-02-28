@@ -12,7 +12,7 @@
       dest: origin-scripts
   - name: Create bash helpers
     blockinfile:
-      dest: "{{ ansible_env.HOME }}/.bashrc"
+      dest: "{{ ansible_env.HOME }}/.bash_profile"
       block: |
         export PATH=/data/src/github.com/openshift/origin/_output/local/bin/linux/amd64:$PATH
         type -p direnv &>/dev/null && eval "$(direnv hook bash)"
