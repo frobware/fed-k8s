@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Add registry mirror option to Docker daemon
+    replace:
+      path: /etc/sysconfig/docker
+      regexp: OPTIONS='(.*)'
+      replace: OPTIONS='\1 --registry-mirror https://spicy.internal.frobware.com:5000 --insecure-registry spicy.internal.frobware.com:5000'
+  - name: Restart docker
+    command: systemctl restart docker
+      
+    
