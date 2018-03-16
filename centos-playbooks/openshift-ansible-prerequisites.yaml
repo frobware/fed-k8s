@@ -11,6 +11,8 @@
 
 - import_playbook: docker-group.yaml
 
+- import_playbook: docker-registry-mirror.yaml
+
 - import_playbook: nfs.yaml
 
 - import_playbook: origin-scripts.yaml
