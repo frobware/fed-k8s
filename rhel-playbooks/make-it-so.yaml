@@ -9,14 +9,6 @@
 
 - import_playbook: 25-yum-update.yaml
 
-- import_playbook: 30-install-ansible.yaml
-
-- import_playbook: 40-docker.yaml
-
-- import_playbook: 50-openshift-playbook.yaml
-
-- import_playbook: 60-svt.yaml
-
 - import_playbook: 70-nfs.yaml
 
 - import_playbook: 99-disable-cloud-init.yaml
