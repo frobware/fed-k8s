@@ -5,7 +5,7 @@
   tasks:
   - name: Install Docker
     yum:
-      name: docker-1.12.6
+      name: docker-1.13.1
   - name: Add INSECURE Registry
     lineinfile:
       dest: /etc/sysconfig/docker
