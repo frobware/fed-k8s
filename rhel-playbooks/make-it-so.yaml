@@ -1,6 +1,8 @@
 ---
 - import_playbook: 00-rhel-subscribe.yaml
 
+- import_playbook: 00-epel.yaml
+
 - import_playbook: 10-network-manager.yaml
 
 - import_playbook: 15-ntp.yaml
