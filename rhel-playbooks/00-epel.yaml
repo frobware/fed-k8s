@@ -3,6 +3,8 @@
   become: yes
   become_method: sudo
   tasks:
+  - name: Install EPEL RPM
+    command: yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
   - name: Enable the EPEL repo
     yum:
       name: epel-release
