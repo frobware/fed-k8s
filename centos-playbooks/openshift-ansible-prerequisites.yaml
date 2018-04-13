@@ -7,9 +7,11 @@
 
 - import_playbook: ansible-support.yaml
 
-# - import_playbook: docker.yaml
-# - import_playbook: docker-group.yaml
-# - import_playbook: docker-registry-mirror.yaml
+- import_playbook: docker.yaml
+
+- import_playbook: docker-group.yaml
+
+- import_playbook: docker-registry-mirror.yaml
 
 - import_playbook: nfs.yaml
 
