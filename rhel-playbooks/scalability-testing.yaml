@@ -15,10 +15,6 @@
     yum:
       name: python-pip, python-boto, python-yaml, python-rbd, python-flask
       state: present
-      enablerepo: epel
   - name: Install python-boto3
     pip:
       name: boto3
-      
-      
-
